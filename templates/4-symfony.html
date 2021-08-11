@@ -1,0 +1,33 @@
+<ul id="demo"></ul>
+
+<table class="table table-striped">
+    <thead>
+    <th>Prénom</th>
+    <th>Nom</th>
+    </thead>
+    <tbody class="demo">
+    <tr>
+        <td id="tdPrenom">John</td>
+        <td id="tdNom">DOE</td>
+    </tr>
+    </tbody>
+</table>
+<script>
+    let url = 'http://localhost/projets-symfony/projet-api/public/personne/';
+    fetch(url)
+        .then(response => response.json())
+        .then(tableau => {
+            console.log(tableau);
+            for (let p of tableau) {
+                // on met le selecteur sur la balise <ul>
+                let ul = document.getElementById('demo');
+                let li = document.createElement('li'); //<li></li>
+                li.textContent = p.prenom + ' ' + p.nom;//<li>John DOE</li> innerHTML
+
+                // on ajoute une balise enfant à la balise <ul>
+                ul.appendChild(li);
+
+            }
+        }
+        );
+</script>
